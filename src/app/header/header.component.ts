@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../common/models/user-Model';
-// import { AuthserviceService } from '../user/authservice.service';
-// import { EmployeeInfoList, User } from '../user/user.model';
+import { User } from '../models/user-Model';
+import { AuthService } from '../services/auth.service';
 
 
 @Component({
@@ -11,7 +10,7 @@ import { User } from '../common/models/user-Model';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -20,7 +19,7 @@ export class HeaderComponent implements OnInit {
     return this.authService.loggedIn;
   }
 
-  getRole(): number{
+  getRole(): number {
     let data: User = this.authService.retrieveUser();
     return data.users_role_id;
   }
